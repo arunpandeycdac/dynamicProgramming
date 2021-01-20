@@ -57,17 +57,21 @@ public class FibonacciExample {
 	 * 
 	 * This will enhance the performance and optimize the execution
 	 */
-	public long tabulationWay(int n, Map<Integer, Long> memo){	
-		if(memo.containsKey(n)){
-			return memo.get(n);
+	public long tabulationWay(int n, long[] table){	
+		
+		if(table[n] != 0){
+			return table[n];
 		}
 		if(n <= 2) {
 			return 1;
 		}
 		
-		long val = tabulationWay(n-1, memo) + tabulationWay(n-2, memo);
-		memo.put(n, val);
-		return val;
+		long val1 = tabulationWay(n-1, table);
+		long val2 = tabulationWay(n-2, table);
+		table[n-1] = val1;
+		table[n-2] = val2;
+		table[n] = val1+val2;;
+		return table[n];
 	}
 	
 	public static void main(String args[]) {
@@ -77,6 +81,7 @@ public class FibonacciExample {
 		/**
 		 * Brute-force method call
 		 */
+		System.out.println("=============== Brute-force call starts =====================");
 		System.out.println("Bruteforce call: " + fib.bruteforceWay(3));
 		System.out.println("Bruteforce call: " + fib.bruteforceWay(8));
 		//this brute-force call may stuck as it takes longer to complete.
@@ -85,6 +90,7 @@ public class FibonacciExample {
 		/**
 		 * Memoization method call
 		*/
+		System.out.println("=============== Memoization call starts =====================");
 		System.out.println("Memoization call: " + fib.memoizationWay(8, new HashMap<Integer, Long>()));
 		//this memoization call will be fast as it has been optimized.
 		System.out.println("Memoization call: " + fib.memoizationWay(50, new HashMap<Integer, Long>()));
@@ -92,9 +98,14 @@ public class FibonacciExample {
 		/**
 		 * Tabulation method call
 		*/
-		System.out.println("Tabulation call: " + fib.tabulationWay(8, new HashMap<Integer, Long>()));
+		System.out.println("=============== Tabulation call starts =====================");
+		System.out.println("Tabulation call: " + fib.tabulationWay(8, new long[8+1]));
 		//this tabulation call will be fast as it has been optimized.
-		System.out.println("Tabulation call: " + fib.tabulationWay(50, new HashMap<Integer, Long>()));
+		long[] table = new long[51];
+		System.out.println("Tabulation call: " + fib.tabulationWay(50, table));
+		int count = 0;
+		for(long fibValue : table)
+			System.out.println("fib[" + count++ + "]: " + fibValue);
 		
 	}
 
