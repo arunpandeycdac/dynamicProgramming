@@ -15,6 +15,6 @@ Here we will solve few dynamic programming related problems.
 1. Memoization
 2. Tabulation
 
-** Memoization:
+#### Memoization:
 A way of speeding up the computations by caching results of repeated calculations.
 
