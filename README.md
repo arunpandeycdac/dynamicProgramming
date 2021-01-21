@@ -1,6 +1,7 @@
 # Dynamic Programming
 ### What is DP?
-"It's a way of computing recursive algorithm with highly overlapping sub-problems by solving each sub-problem just once."
+"It's a way of computing recursive algorithm with highly overlapping sub-problems by solving each sub-problem just once." In short an optimization technique for computer programs.
+
 So we can say -
 Break the bigger problem in sub-problems and then solve sub-problems first so that they are ready when it's needed to made up the bigger problem.
 
