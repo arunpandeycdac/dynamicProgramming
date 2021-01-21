@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * @author Arun Pandey
  *
+ *	Problem Statement:
  *	Write a function fib(n) that takes a number as an argument 
  *	and returns the nth number of fibonacci sequence.
  *	
@@ -74,6 +75,32 @@ public class FibonacciExample {
 		return table[n];
 	}
 	
+	/**
+	 * 4th way of implementation using Tabulation and iteration (more smarter way)
+	 * 
+	 * This will enhance the performance and optimize the execution
+	 */
+	public long tabulationWay(int n){	
+		
+		long result = 0L;
+		long temp1 = 0L;
+		long temp2 = 0L;
+		for(int i = 1; i <= n; i++) {
+			
+			if(i <= 2) {
+				result = 1;
+				temp1 = 1;
+				temp2 = 1;
+			} 
+			else {
+				result = temp1 + temp2;
+				temp1 = temp2;
+				temp2 = result;
+			}
+		}
+		return result;
+	}
+	
 	public static void main(String args[]) {
 		
 		FibonacciExample fib = new FibonacciExample();
@@ -91,7 +118,9 @@ public class FibonacciExample {
 		 * Memoization method call
 		*/
 		System.out.println("=============== Memoization call starts =====================");
-		System.out.println("Memoization call: " + fib.memoizationWay(8, new HashMap<Integer, Long>()));
+		Map memo = new HashMap<Integer, Long>();
+		System.out.println("Memoization call: " + fib.memoizationWay(8, memo));
+		System.out.println("memo size: " + memo.size());
 		//this memoization call will be fast as it has been optimized.
 		System.out.println("Memoization call: " + fib.memoizationWay(50, new HashMap<Integer, Long>()));
 		
@@ -107,6 +136,13 @@ public class FibonacciExample {
 		for(long fibValue : table)
 			System.out.println("fib[" + count++ + "]: " + fibValue);
 		
+		/**
+		 * Tabulation method call (more smarter way)
+		*/
+		System.out.println("=============== Tabulation call (more smarter way) starts =====================");
+		System.out.println("Tabulation call: " + fib.tabulationWay(8));
+		//this tabulation call will be fast as it has been optimized.
+		System.out.println("Tabulation call: " + fib.tabulationWay(50));
 	}
 
 }
