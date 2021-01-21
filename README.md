@@ -16,5 +16,6 @@ Here we will solve few dynamic programming related problems.
 2. Tabulation
 
 #### Memoization:
-A way of speeding up the computations by caching results of repeated calculations.
+* A way of speeding up the computations by caching results of repeated calculations.
+* There is a trade-off of space over speed. This takes space to cache the intermediate results but improves the performance.
 
